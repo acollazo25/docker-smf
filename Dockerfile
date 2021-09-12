@@ -8,7 +8,7 @@ RUN cd /var/www/html; tar xfz ../smf_2-1-rc4_install.tar.gz; tar xfz ../smf_2-1-
 RUN rm /etc/apache2/sites-enabled/000-default.conf
 ADD smf.conf /etc/apache2/sites-enabled/
 WORKDIR /var/www/html
-RUN chmod -R 777 attachments avatars cache Packages Packages/installed.list Smileys Themes agreement.txt Settings.php Settings_bak.php
+RUN chmod -R 777 attachments avatars cache Packages Smileys Themes agreement.txt Settings.php Settings_bak.php
 RUN chown -R www-data:www-data .
 RUN service apache2 stop
 ADD start.sh /
