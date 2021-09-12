@@ -6,6 +6,9 @@ services:
     image: smf
     ports:
       - "8086:80"
+    volumes:
+    - ./database:/var/lib/mysql
+    - ./smf:/var/www/smf
     networks:
       - proxy
     env_file:
