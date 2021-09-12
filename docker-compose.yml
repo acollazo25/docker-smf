@@ -1,19 +1,39 @@
 version: '3'
 services:
   smf:
-    container_name: smf
+    restart: unless-stopped
+    container_name: smf_server
+    depends_on:
+      - db
     build: .
     image: smf
     ports:
       - "8086:80"
-    volumes:
-    - ./database:/var/lib/mysql
-    - ./smf:/var/www/html
+    - ./smf:/var/www/smf
     networks:
       - proxy
+      - internal
     env_file:
       - .env
 
+  db:
+    restart: unless-stopped
+    container_name: smf_database
+    image: mysql:5.7
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "smf"
+      MYSQL_USER: "smf"
+      MYSQL_PASSWORD: "smfpass" # this is not a risk
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    networks:
+      - internal
+
 networks:
+  internal:
   proxy:
     external: true
+
+
+    SMF_BOARD_URL
