@@ -34,6 +34,3 @@ networks:
   internal:
   proxy:
     external: true
-
-
-    SMF_BOARD_URL
