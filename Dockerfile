@@ -7,8 +7,8 @@ RUN docker-php-ext-install mysqli simplexml mbstring gd
 RUN service mysql start \
 	&& mysql --password=rootpass -e "create database smf;grant all privileges on smf.* to 'smf'@'localhost' identified by 'smfpass' with grant option;" \
 	&& service mysql stop
-ADD http://download.simplemachines.org/index.php/smf_2-0-15_install.tar.gz /var/www/
-RUN mkdir /var/www/smf; cd /var/www/smf; tar xfz ../smf_2-0-15_install.tar.gz; rm ../smf_2-0-15_install.tar.gz
+ADD http://download.simplemachines.org/index.php/smf_2-0-18_install.tar.gz /var/www/
+RUN mkdir /var/www/smf; cd /var/www/smf; tar xfz ../smf_2-0-18_install.tar.gz; rm ../smf_2-0-15_install.tar.gz
 RUN rm /etc/apache2/sites-enabled/000-default.conf
 ADD smf.conf /etc/apache2/sites-enabled/
 WORKDIR /var/www/smf
