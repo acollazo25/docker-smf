@@ -12,6 +12,7 @@ services:
       - "8086:80"
     volumes:
       - ./smf:/var/www/smf
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     networks:
       - proxy
       - internal
